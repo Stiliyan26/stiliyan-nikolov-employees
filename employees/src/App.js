@@ -6,7 +6,7 @@ import { getAllPairsWorkingTogether, getProjects, getLongestWorkingPair } from '
 
 function App() {
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false    );
   const [longestWorkingPair, setLongestWorkingPair] = useState(null); 
 
   async function onCsvFileUpload(e) {
@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Upload your CSV file here!</h1>
+        <h1 className='title'>Upload your CSV file here!</h1>
 
         <label htmlFor='file' className="file-label">
           <input type="file" name="file" id="file" onChange={onCsvFileUpload} />

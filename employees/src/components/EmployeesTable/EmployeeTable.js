@@ -27,7 +27,7 @@ const EmployeeTable = ({ longestPair }) => {
           </tr>
           {projectRows}
           <tr>
-            <td colSpan="3">Overall days worked together</td>
+            <td colSpan="3">Total days worked together</td>
             <td>{getDays(longestPair.totalTimeTogether)}</td>
           </tr>
         </table>

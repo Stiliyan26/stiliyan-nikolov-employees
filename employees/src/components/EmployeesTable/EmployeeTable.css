@@ -5,7 +5,7 @@ table {
     max-width: 600px;
     border-radius: 8px;
     overflow: hidden;
-    background: #494368;
+    background: #436849;
     color: white;
   }
   
@@ -15,5 +15,5 @@ table {
   }
   
   tr:nth-child(even) {
-    background: #3d3857;
+    background: #385741;
   }
