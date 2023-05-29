@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import EmployeeTable from './components/EmployeesTable/EmployeeTable';
-import { parseCsvFile } from './utils/parseCsvFile'
-import { getProjects } from './utils/getProjects'
+import { parseCsvFile } from './utils/parseCsvFile';
+import { getAllPairsWorkingTogether, getProjects } from './utils/projectData';
 
 function App() {
   const [error, setError] = useState("");
@@ -24,7 +24,8 @@ function App() {
 
       const parsedCsvFile = await parseCsvFile(fileInfo);
       const projects = getProjects(parsedCsvFile);
-      console.log(projects);
+      const pairs = getAllPairsWorkingTogether(projects);
+      console.log(pairs);
     }
     catch {
       setError(error.message);
@@ -33,8 +34,6 @@ function App() {
       setIsLoading(false);
     }
   }
-
-
 
   return (
     <div className="App">
