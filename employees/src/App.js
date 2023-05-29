@@ -2,14 +2,16 @@ import { useState } from 'react';
 import './App.css';
 import EmployeeTable from './components/EmployeesTable/EmployeeTable';
 import { parseCsvFile } from './utils/parseCsvFile';
-import { getAllPairsWorkingTogether, getProjects } from './utils/projectData';
+import { getAllPairsWorkingTogether, getProjects, getLongestWorkingPair } from './utils/projectData';
 
 function App() {
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState("false");
+  const [isLoading, setIsLoading] = useState(false);
   const [longestWorkingPair, setLongestWorkingPair] = useState(null); 
 
   async function onCsvFileUpload(e) {
+    e.preventDefault();
+
     try {
       setIsLoading(true);
       setLongestWorkingPair(null);
@@ -22,10 +24,16 @@ function App() {
         throw new Error("Please upload CSV file!");
       }
 
+      //Parsing csv file
       const parsedCsvFile = await parseCsvFile(fileInfo);
+      //Returns data for every project
       const projects = getProjects(parsedCsvFile);
+      //Returns all employee pairs
       const pairs = getAllPairsWorkingTogether(projects);
-      console.log(pairs);
+      //Returns the longest pair of employees worked on the same project
+      const longestWorkingPairOfAll = getLongestWorkingPair(pairs);
+
+      setLongestWorkingPair(longestWorkingPairOfAll);
     }
     catch {
       setError(error.message);
@@ -38,11 +46,11 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Upload your csv file here!</h1>
+        <h1>Upload your CSV file here!</h1>
 
         <label htmlFor='file' className="file-label">
           <input type="file" name="file" id="file" onChange={onCsvFileUpload} />
-          {isLoading ? "Loading..." : "Upload Csv file"}
+          { isLoading ? "Loading..." : "Upload CSV file"}
         </label>
 
         {error && <p className="error">{error}</p>}

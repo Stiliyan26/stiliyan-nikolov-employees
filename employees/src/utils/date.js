@@ -1,3 +1,5 @@
+const DAY_IN_MS = 86400000;
+
 export function getTimePeriodTogether(togetherInfo){
     const { startDate1, endDate1, startDate2, endDate2 } = togetherInfo;
 
@@ -34,4 +36,8 @@ function getDateInMiliSeconds(date){
     }
 
     return new Date(date).valueOf();
+}
+
+export function getDays(dateInMs){
+    return Math.floor(dateInMs / DAY_IN_MS);
 }

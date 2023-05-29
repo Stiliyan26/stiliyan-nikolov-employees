@@ -77,3 +77,24 @@ export function getAllPairsWorkingTogether(projects) {
 
     return pairs;
 }
+
+export function getLongestWorkingPair(pairs){
+    let longestWorkingPair = {};
+    let longestWorkingPairValue = 0;
+    const pairKeys = Object.keys(pairs);
+
+    for (let i = 0; i < pairKeys.length; i++){
+        //Checks if the current pair has more totalTime than the current lognest totalTime pair
+        if (longestWorkingPairValue < pairs[pairKeys[i]].totalTimeTogether){
+            longestWorkingPairValue = pairs[pairKeys[i]].totalTimeTogether;
+            longestWorkingPair = pairs[pairKeys[i]];
+        }
+    }
+
+    if (longestWorkingPair == {})
+    {
+        throw new Error("No pairs found!");
+    }
+
+    return longestWorkingPair;
+}
