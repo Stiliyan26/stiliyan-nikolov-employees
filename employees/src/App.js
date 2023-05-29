@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import EmployeeTable from './components/EmployeesTable/EmployeeTable';
 import { parseCsvFile } from './utils/parseCsvFile'
+import { getProjects } from './utils/getProjects'
 
 function App() {
   const [error, setError] = useState("");
@@ -16,12 +17,14 @@ function App() {
 
       const fileInfo = e.target.files[0];
       const fileExtension = fileInfo.name.split('.').pop();
+      //Checking is uploaded file csv
       if (fileExtension !== 'csv') {
         throw new Error("Please upload CSV file!");
       }
 
       const parsedCsvFile = await parseCsvFile(fileInfo);
-      const projects = getProjects();
+      const projects = getProjects(parsedCsvFile);
+      console.log(projects);
     }
     catch {
       setError(error.message);
